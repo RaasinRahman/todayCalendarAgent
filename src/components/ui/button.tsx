@@ -2,7 +2,7 @@ import * as React from "react";
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "default" | "outline" | "secondary";
+  variant?: "default" | "outline" | "secondary" | "danger";
   size?: "default" | "sm" | "lg";
   isLoading?: boolean;
 }
@@ -19,12 +19,13 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ) => {
-    const baseStyles = "font-medium rounded-md focus:outline-none transition-colors";
+    const baseStyles = "font-medium rounded-md focus:outline-none transition-all duration-200 ease-in-out";
     
     const variants = {
-      default: "bg-blue-600 text-white hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2",
-      outline: "border border-gray-300 text-gray-700 hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2",
-      secondary: "bg-gray-100 text-gray-900 hover:bg-gray-200 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2",
+      default: "bg-indigo-600 text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 shadow-sm",
+      outline: "border border-gray-300 text-gray-800 hover:bg-gray-50 hover:border-gray-400 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2",
+      secondary: "bg-gray-100 text-gray-800 hover:bg-gray-200 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2",
+      danger: "bg-red-600 text-white hover:bg-red-700 focus:ring-2 focus:ring-red-500 focus:ring-offset-2 shadow-sm",
     };
     
     const sizes = {
@@ -37,7 +38,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const sizeStyles = sizes[size];
     
     const buttonStyles = `${baseStyles} ${variantStyles} ${sizeStyles} ${className} ${
-      props.disabled ? "opacity-50 cursor-not-allowed" : ""
+      props.disabled ? "opacity-60 cursor-not-allowed" : ""
     } ${isLoading ? "relative !text-transparent" : ""}`;
 
     return (
